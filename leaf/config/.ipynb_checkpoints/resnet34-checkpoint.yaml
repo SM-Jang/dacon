@@ -1,0 +1,21 @@
+epochs: 20
+resume: None
+learning_rate: 0.001
+
+train:
+    train_path: 'dataset/train.csv'
+    batch_size: 2
+    image_size: 128
+    valid_size: 0.2
+    num_workers: 0
+    
+
+test:
+    test_path: 'dataset/test.csv'
+    batch_size: 2
+    image_size: 128
+    num_workers: 0
+
+model:
+    model_name: 'resnet34'
+    output_shape: 1
