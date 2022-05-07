@@ -19,7 +19,7 @@ def _save_config_file(model_checkpoints_folder, model_name):
 # 최초, 또는 가장 최근 학습된 가중치와 yaml 파일은 ./weight/checkpoint 폴더에 저장
 # 이후에 이뤄지는 실험은 전에 저장된 checkpoint 이하 파일들은 ./weight/experiments 이하로 timestamp와 함께 copy
 def _copy_to_experiment_dir(model_checkpoints_folder, model_name):
-    now_time = datetime.now().strftime()
+    now_time = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
     new_exp_dir = os.path.join('./weights/experiments', model_name + '_checkpoints', now_time)
     if not os.path.exist(new_exp_dir):
         os.makedirs(new_exp_dir)
