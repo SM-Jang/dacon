@@ -46,12 +46,11 @@ class MyDataset(Dataset):
     
 
 class MyTrainSetWrapper(object):
-    def __init__(self, train_path, batch_size, image_size, valid_size, num_workers=0):
+    def __init__(self, train_path, batch_size, valid_size, num_workers=0):
         self.path = train_path
         self.batch_size = batch_size
         self.valid_size = valid_size
         self.num_workers = num_workers
-        self.image_size = image_size
         
     def get_data_loaders(self):
         data_augment = self._get_train_transform()
@@ -63,9 +62,9 @@ class MyTrainSetWrapper(object):
     def _get_train_transform(self):
         data_transforms = transforms.Compose([
                         transforms.ToPILImage(),
-                        # transforms.Resize((self.image_size, self.image_size)),
+                        transforms.Resize((616,820)),
                         transforms.ToTensor(),
-                        transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5)),
+                        # transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5)),
                         ])
         return data_transforms
     
@@ -91,11 +90,10 @@ class MyTrainSetWrapper(object):
         return train_loader, valid_loader
         
 class MyTestSetWrapper(object):
-    def __init__(self, test_path, batch_size, image_size, num_workers=0):
+    def __init__(self, test_path, batch_size, num_workers=0):
         self.path = test_path
         self.batch_size = batch_size
         self.num_workers = num_workers
-        self.image_size = image_size
         
     def get_test_loaders(self):
         data_augment = self._get_test_transform()
@@ -110,8 +108,8 @@ class MyTestSetWrapper(object):
     def _get_test_transform(self):
         data_transforms = transforms.Compose([
                         transforms.ToPILImage(),
-                        # transforms.Resize((self.image_size, self.image_size)),
+                        transforms.Resize((616,820)),
                         transforms.ToTensor(),
-                        transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5)),
+                        # transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5)),
                         ])
         return data_transforms

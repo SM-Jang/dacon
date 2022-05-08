@@ -22,6 +22,10 @@ def make_trainpath_csv(data_dir):
     'labels':label_list
     }
     train_data = pd.DataFrame(train_data)
+    train_data['meta_path'] = train_data['img_path'].str.replace('image', 'meta')
+    train_data['meta_path'] = train_data['meta_path'].str.replace('jpg', 'csv')
+    train_data['meta_path'] = train_data['meta_path'].str.replace('png', 'csv')
+    train_data = train_data[['img_path', 'meta_path', 'labels']]
     train_data.to_csv(data_dir+'.csv')
     
 
@@ -36,6 +40,10 @@ def make_testpath_csv(data_dir):
         'img_path':img_path_list
     }
     test_data = pd.DataFrame(test_data)
+    test_data['meta_path'] = test_data['img_path'].str.replace('image', 'meta')
+    test_data['meta_path'] = test_data['meta_path'].str.replace('jpg', 'csv')
+    test_data['meta_path'] = test_data['meta_path'].str.replace('png', 'csv')
+    test_data = test_data[['img_path', 'meta_path']]
     test_data.to_csv(data_dir+'.csv')
     
     
